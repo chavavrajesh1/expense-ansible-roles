@@ -1,0 +1,24 @@
+- name: create ec2 and r53 records
+  hosts: localhost
+  vars:
+    zone: chavavenkat.online
+    # instances:
+    # - db
+    # - backend
+    # - frontend
+  tasks:
+  - name: create ec2 instances
+    amazon.aws.ec2_instances:
+      instance_type: t2.micro
+      name: "{{ item }}"
+      security_group: allow-all
+      image_id: ami-041e2ea9402c46c32 #ami-090252cbe067a9e58
+      tags:
+        Name: "{{ item }}"
+    loop:
+    - db
+    - backend
+    - frontend
+    register: ec2_instances_info
+
+  # - name: create r53 records     
