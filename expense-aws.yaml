@@ -1,7 +1,7 @@
 - name: create ec2 and r53 records
   hosts: localhost
   vars:
-    zone: daws78s.online
+    zone: chavavenkat.online
     instances:
     - db
     - backend
